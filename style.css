@@ -1,0 +1,587 @@
+/* ═══════════════════════════════════════════════
+   FONTE — Nunito (arredondada, estilo cartoon)
+════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+/* ═══════════════════════════════════════════════
+   RESET & BASE
+════════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Tema quintal — céu + gramado */
+  --sky:          #8ecae6;
+  --sky-light:    #caf0f8;
+  --grass:        #95d5b2;
+  --grass-dark:   #52b788;
+
+  /* Superfícies claras */
+  --surface:      #ffffff;
+  --surface2:     #f0f9ff;
+  --border:       #bee3f8;
+  --text:         #1a0a4c;
+  --muted:        #6b5b9e;
+
+  /* Primária (roxo Backyardigans) */
+  --primary:      #7209b7;
+  --primary-dark: #560bad;
+  --primary-light: #f3e8ff;
+
+  /* Cores dos personagens */
+  --pablo-color:  #3a86ff;   /* azul    — Pablo  */
+  --tyrone-color: #fb8500;   /* laranja — Tyrone */
+  --uniqua-color: #e91e8c;   /* rosa    — Uniqua */
+  --tasha-color:  #ffbe0b;   /* amarelo — Tasha  */
+  --austin-color: #8338ec;   /* roxo    — Austin */
+
+  --radius:    16px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+  --shadow:    0 4px 20px rgba(114, 9, 183, 0.12);
+  --shadow-lg: 0 8px 36px rgba(114, 9, 183, 0.18);
+  --transition: 0.2s ease;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(180deg, var(--sky-light) 0%, var(--sky) 40%, var(--grass) 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ═══════════════════════════════════════════════
+   UTILITÁRIOS
+════════════════════════════════════════════════ */
+.hidden { display: none !important; }
+
+.highlight {
+  color: var(--primary);
+  -webkit-text-stroke: 1px var(--primary-dark);
+}
+
+/* ═══════════════════════════════════════════════
+   DECORAÇÃO DE FUNDO — BOLHAS E NUVENS
+════════════════════════════════════════════════ */
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Sol */
+.stars::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  right: 60px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #ffe566 40%, #ffb703 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 12px rgba(255,183,3,0.2), 0 0 0 24px rgba(255,183,3,0.1);
+}
+
+/* Nuvem 1 */
+.stars::after {
+  content: '';
+  position: absolute;
+  top: 60px;
+  left: 8%;
+  width: 120px;
+  height: 44px;
+  background: rgba(255,255,255,0.75);
+  border-radius: 99px;
+  box-shadow:
+    30px -14px 0 10px rgba(255,255,255,0.75),
+    60px -6px 0 6px rgba(255,255,255,0.75),
+    -20px 4px 0 6px rgba(255,255,255,0.6);
+}
+
+/* ═══════════════════════════════════════════════
+   BADGE
+════════════════════════════════════════════════ */
+.marvel-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 99px;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 3px 10px rgba(114,9,183,0.35);
+}
+
+.marvel-badge.small {
+  font-size: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════
+   BOTÕES
+════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 34px;
+  border: none;
+  border-radius: 99px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 0.02em;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--primary-dark), 0 6px 16px rgba(114,9,183,0.35);
+}
+
+.btn-primary:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--primary-dark), 0 10px 24px rgba(114,9,183,0.4);
+}
+
+.btn-primary:not(:disabled):active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--primary-dark);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--muted);
+  border: 2px solid var(--border);
+  box-shadow: 0 3px 0 var(--border);
+}
+
+.btn-secondary:not(:disabled):hover {
+  background: var(--surface2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--border);
+}
+
+.btn svg { width: 18px; height: 18px; }
+
+/* ═══════════════════════════════════════════════
+   TELA 1 — BOAS-VINDAS
+════════════════════════════════════════════════ */
+#welcome-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.welcome-card {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+}
+
+.welcome-title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.6rem;
+  color: var(--text);
+  text-shadow: 0 3px 0 rgba(255,255,255,0.6);
+  -webkit-text-stroke: 1.5px rgba(114,9,183,0.15);
+}
+
+.universe-lore {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255,255,255,0.9);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.8rem;
+  text-align: left;
+  box-shadow: var(--shadow);
+}
+
+.universe-lore p {
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+  font-size: 0.97rem;
+  font-weight: 600;
+}
+
+.universe-lore p:last-child { margin-bottom: 0; }
+
+.universe-lore strong { color: var(--text); font-weight: 900; }
+
+/* Chips dos personagens */
+.heroes-preview {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.2rem;
+}
+
+.hero-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.9);
+  border: 3px solid transparent;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  width: 96px;
+  cursor: default;
+  transition: var(--transition);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.hero-chip:hover { transform: translateY(-5px) rotate(-1deg); }
+
+.hero-chip img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* Pablo — azul */
+.hero-chip.pablo {
+  border-color: var(--pablo-color);
+  color: var(--pablo-color);
+  box-shadow: 0 4px 0 var(--pablo-color), 0 6px 16px rgba(58,134,255,0.2);
+}
+
+/* Tyrone — laranja */
+.hero-chip.tyrone {
+  border-color: var(--tyrone-color);
+  color: var(--tyrone-color);
+  box-shadow: 0 4px 0 var(--tyrone-color), 0 6px 16px rgba(251,133,0,0.2);
+}
+
+/* Uniqua — rosa */
+.hero-chip.uniqua {
+  border-color: var(--uniqua-color);
+  color: var(--uniqua-color);
+  box-shadow: 0 4px 0 var(--uniqua-color), 0 6px 16px rgba(233,30,140,0.2);
+}
+
+/* Tasha — amarelo */
+.hero-chip.tasha {
+  border-color: var(--tasha-color);
+  color: #c78f00;
+  box-shadow: 0 4px 0 var(--tasha-color), 0 6px 16px rgba(255,190,11,0.2);
+}
+
+/* Austin — roxo */
+.hero-chip.austin {
+  border-color: var(--austin-color);
+  color: var(--austin-color);
+  box-shadow: 0 4px 0 var(--austin-color), 0 6px 16px rgba(131,56,236,0.2);
+}
+
+/* ═══════════════════════════════════════════════
+   TELA 2 — QUESTIONÁRIO
+════════════════════════════════════════════════ */
+#quiz-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.quiz-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 680px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(255,255,255,0.95);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.quiz-header {
+  padding: 1.4rem 2rem 1rem;
+  border-bottom: 2px dashed var(--border);
+  background: linear-gradient(135deg, #f0f9ff 0%, #fdf4ff 100%);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+  font-weight: 800;
+}
+
+.progress-track {
+  height: 10px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+#progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg,
+    var(--pablo-color),
+    var(--uniqua-color),
+    var(--tasha-color)
+  );
+  border-radius: 99px;
+  width: 0%;
+  transition: width 0.4s cubic-bezier(.34,1.56,.64,1);
+}
+
+.quiz-body { padding: 1.8rem 2rem 1.4rem; }
+
+.question-tag {
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.question-text {
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+  font-weight: 800;
+  line-height: 1.45;
+  margin-bottom: 1.2rem;
+  color: var(--text);
+}
+
+/* Opções */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.option-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  background: var(--surface2);
+  border: 2.5px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+  width: 100%;
+  line-height: 1.4;
+}
+
+.option-btn:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  transform: translateX(4px);
+}
+
+.option-btn.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  transform: translateX(4px);
+}
+
+.option-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  background: var(--border);
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--muted);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.option-btn.selected .option-letter,
+.option-btn:hover .option-letter {
+  background: var(--primary);
+  color: #fff;
+}
+
+.quiz-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem 1.6rem;
+  border-top: 2px dashed var(--border);
+  background: linear-gradient(135deg, #fdf4ff 0%, #f0f9ff 100%);
+}
+
+/* ═══════════════════════════════════════════════
+   TELA 3 — RESULTADO
+════════════════════════════════════════════════ */
+#result-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.result-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 740px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.result-intro { text-align: center; }
+
+.result-label {
+  font-size: 1.1rem;
+  color: var(--muted);
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+
+.result-card {
+  width: 100%;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(255,255,255,0.95);
+  border-radius: var(--radius-xl);
+  padding: 2.4rem 2.8rem;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+.result-name {
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--text);
+  -webkit-text-stroke: 1px rgba(114,9,183,0.15);
+}
+
+.result-alias {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.result-description {
+  font-size: 0.91rem;
+  color: var(--muted);
+  font-weight: 600;
+  line-height: 1.6;
+  margin-top: 0.3rem;
+  flex: 1;
+}
+
+/* Scoreboard */
+.score-board {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.score-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 42px;
+  align-items: center;
+  gap: 8px;
+}
+
+.score-hero {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-align: right;
+}
+
+.score-bar-track {
+  height: 8px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  width: 0%;
+  transition: width 1s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* Barras por personagem */
+.pablo-bar  { background: var(--pablo-color); }
+.tyrone-bar { background: var(--tyrone-color); }
+.uniqua-bar { background: var(--uniqua-color); }
+.tasha-bar  { background: var(--tasha-color); }
+.austin-bar { background: var(--austin-color); }
+
+.score-value {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVIDADE
+════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .result-card { grid-template-columns: 1fr; }
+  .result-image-container { min-height: 200px; }
+  .quiz-footer { gap: 0.6rem; }
+  .btn { padding: 12px 20px; font-size: 0.88rem; }
+  .quiz-body { padding: 1.2rem 1.2rem 0.8rem; }
+  .quiz-footer { padding: 0.8rem 1.2rem 1.2rem; }
+  .quiz-header { padding: 1rem 1.2rem 0.8rem; }
+  .hero-chip { width: 80px; font-size: 0.68rem; }
+  .welcome-title { -webkit-text-stroke: 0; }
+}
