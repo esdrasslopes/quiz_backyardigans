@@ -504,6 +504,13 @@ body {
   -webkit-text-stroke: 1px rgba(114,9,183,0.15);
 }
 
+.result-image {
+  width: 360px;
+  height: 360px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
 .result-alias {
   font-size: 0.8rem;
   color: var(--muted);
@@ -576,7 +583,7 @@ body {
 ════════════════════════════════════════════════ */
 @media (max-width: 600px) {
   .result-card { grid-template-columns: 1fr; }
-  .result-image-container { min-height: 200px; }
+  .result-image { min-height: 200px; }
   .quiz-footer { gap: 0.6rem; }
   .btn { padding: 12px 20px; font-size: 0.88rem; }
   .quiz-body { padding: 1.2rem 1.2rem 0.8rem; }

@@ -16,6 +16,7 @@ const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
 
 const resultName = document.getElementById("result-name");
+const resultImage = document.getElementById("result-image");
 const resultAlias = document.getElementById("result-alias");
 const resultDescription = document.getElementById("result-description");
 
@@ -290,30 +291,35 @@ const characters = {
     alias: "Pinguim Azul",
     description:
       "Dramático, emotivo e cheio de energia! Pablo tem uma imaginação enorme e adora ser o protagonista das aventuras. Ele pode entrar em pânico quando as coisas não saem como planejado, mas sempre encontra uma saída criativa e cheia de estilo.",
+    image: "assets/pablo.png",
   },
   tyrone: {
     name: "Tyrone",
     alias: "Alce Laranja",
     description:
       "Calmo, musical e sempre de bom humor. Tyrone é o mais tranquilo do grupo e raramente perde a cabeça. Ele pensa com clareza mesmo sob pressão e tem um talento natural para a música e para manter o equilíbrio entre os amigos.",
+    image: "assets/tyrone.png",
   },
   uniqua: {
     name: "Uniqua",
     alias: "Uma espécie única!",
     description:
       "Corajosa, aventureira e cheia de ideias! Uniqua é quem puxa o grupo para a próxima aventura. Ela é a mais enérgica do bando, aparece em todos os episódios e não tem medo de nenhum desafio.",
+    image: "assets/uniqua.png",
   },
   tasha: {
     name: "Tasha",
     alias: "Hipopótamo Amarelo",
     description:
       "Determinada, organizada e sabe exatamente o que quer! Tasha tem personalidade forte e gosta que tudo seja feito do jeito certo. Pode parecer mandona às vezes, mas no fundo é uma grande amiga que se preocupa com todos.",
+    image: "assets/tasha.png",
   },
   austin: {
     name: "Austin",
     alias: "Canguru Roxo",
     description:
       "Tímido, gentil e cheio de surpresas! Austin é o mais quietinho do grupo, mas sempre aparece na hora certa com aquele apoio essencial. Por baixo da timidez mora um amigo leal que nunca abandona os companheiros.",
+    image: "assets/austin.png",
   },
 };
 
@@ -416,6 +422,7 @@ const getResult = (quiz) => {
 
   resultName.textContent = character.name;
   resultAlias.textContent = character.alias;
+  resultImage.src = character.image;
   resultDescription.textContent = character.description;
 };
 
